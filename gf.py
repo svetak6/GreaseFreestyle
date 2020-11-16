@@ -65,6 +65,12 @@ class Callbacks:
 
         strokes = cls.shader.viewmap
         print(strokes)
+        print(strokes[0])
+        print(strokes[0].id)
+        print(strokes[0].medium_type)
+        print(stroke for stroke in strokes[0])
+
+#        print(strokes[0].id)
 #        freestyle_to_strokes(scene, lineset, strokes)
 
 
