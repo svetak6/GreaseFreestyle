@@ -64,13 +64,32 @@ class Callbacks:
             return []
 
         strokes = cls.shader.viewmap
-        print(strokes)
-        print(strokes[0])
-        print(strokes[0].id)
-        print(strokes[0].medium_type)
-        print(stroke for stroke in strokes[0])
 
-#        print(strokes[0].id)
+        #
+        print("\nA List of strokes in viewmap:")
+        print(strokes)
+
+        print("\nStroke:")
+        print(strokes[0])
+
+        print("\nStroke ID:")
+        print(strokes[0].id)
+
+        print("\nMedium type (enumeration):")
+        print(strokes[0].medium_type)
+
+        print("\nLength of a stroke:")
+        print(len(strokes[0]))
+
+        print("\nAddress of a StrokeVertex:")
+        print(strokeVertex for strokeVertex in strokes[0])
+
+        for strokeVertex in strokes[0]:
+            print("\nStrokeVertex:")
+            print(strokeVertex)
+            print(strokeVertex.point)
+
+
 #        freestyle_to_strokes(scene, lineset, strokes)
 
 
