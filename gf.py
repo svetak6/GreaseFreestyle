@@ -88,6 +88,8 @@ class Callbacks:
             print("\nStrokeVertex:")
             print(strokeVertex)
             print(strokeVertex.point)
+            print(strokeVertex.attribute.thickness)
+            print(strokeVertex.attribute.visible)
 
 
 #        freestyle_to_strokes(scene, lineset, strokes)
