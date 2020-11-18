@@ -30,8 +30,6 @@ from freestyle.types import (
 )
 #from freestyle.functions import CurveMaterialF0D
 
-
-
 import parameter_editor
 
 class StrokeCollector(StrokeShader):
