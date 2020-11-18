@@ -20,7 +20,6 @@ from bpy.props import (
     EnumProperty,
     PointerProperty,
 )
-
 from mathutils import Vector, Matrix
 
 from freestyle.types import (
@@ -32,6 +31,9 @@ from freestyle.types import (
 
 import parameter_editor
 
+
+
+
 class StrokeCollector(StrokeShader):
     def __init__(self):
         StrokeShader.__init__(self)
@@ -40,9 +42,10 @@ class StrokeCollector(StrokeShader):
     def shade(self, stroke):
         self.viewmap.append(stroke)
 
-class Callbacks:
+class Callbacks():
     @classmethod
     def poll(cls, scene, linestyle):
+# uncomment when options done
 #        return scene.render.use_freestyle and scene.freestyle_gpencil_export.use_freestyle_gpencil_export
         return True
 
@@ -59,28 +62,28 @@ class Callbacks:
         if not cls.poll(scene, lineset.linestyle):
             return []
 
-        strokes = cls.shader.viewmap
+        fsstrokes_map = cls.shader.viewmap
 
         #
-        print("\nA List of strokes in viewmap:")
-        print(strokes)
+        print("\nA List of strokes_map in viewmap:")
+        print(fsstrokes_map)
 
         print("\nStroke:")
-        print(strokes[0])
+        print(fsstrokes_map[0])
 
         print("\nStroke ID:")
-        print(strokes[0].id)
+        print(fsstrokes_map[0].id)
 
         print("\nMedium type (enumeration):")
-        print(strokes[0].medium_type)
+        print(fsstrokes_map[0].medium_type)
 
         print("\nLength of a stroke:")
-        print(len(strokes[0]))
+        print(len(fsstrokes_map[0]))
 
         print("\nAddress of a StrokeVertex:")
-        print(strokeVertex for strokeVertex in strokes[0])
+        print(strokeVertex for strokeVertex in fsstrokes_map[0])
 
-        for strokeVertex in strokes[0]:
+        for strokeVertex in fsstrokes_map[0]:
             print("\nStrokeVertex:")
             print(strokeVertex)
             print(strokeVertex.point)
@@ -94,13 +97,11 @@ class Callbacks:
 ############################################################
 
 def register():
-
     # manipulate shaders list
     parameter_editor.callbacks_modifiers_post.append(Callbacks.modifier_post)
     parameter_editor.callbacks_lineset_post.append(Callbacks.lineset_post)
 
 def unregister():
-
     # manipulate shaders list
     parameter_editor.callbacks_modifiers_post.remove(Callbacks.modifier_post)
     parameter_editor.callbacks_lineset_post.remove(Callbacks.lineset_post)
