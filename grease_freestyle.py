@@ -91,7 +91,7 @@ class Callbacks():
             print(strokeVertex.attribute.visible)
 
 
-#        freestyle_to_strokes(scene, lineset, strokes)
+#        freestyle_to_object(scene, lineset, fsstrokes_map)
 
 
 ############################################################
