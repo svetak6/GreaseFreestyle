@@ -32,7 +32,41 @@ from freestyle.types import (
 import parameter_editor
 
 
+def freestyle_to_gpencil_frame(scene, lineset, fsstrokes_map):
+    # for debugging purposes
+    print("freestyle_to_gpencil_frame start")
 
+    name = "FS {}".format(lineset.name)
+    gpencil_data, frame = create_gpencil_frame(scene, name)
+
+    # TODO: make options with props?
+
+    # for debugging purposes
+    print("freestyle_to_gpencil_frame end")
+
+    freestyle_to_gpencil_strokes(gpencil_data, fsstrokes_map, frame, lineset)
+
+    return gpencil_data
+
+
+
+def get_object(gpencil_data, gpencil_obj_name='init_GPencil') -> bpy.types.Object:
+    obj = bpy.data.objects.new(gpencil_obj_name, gpencil_data)
+    return obj
+
+
+def freestyle_to_object(scene, lineset, fsstrokes_map):
+    """
+    Append GreasePencil(ID) data-block to Object(ID).
+    Link object to active Collection(ID).
+    :param scene:
+    :param lineset:
+    :param fsstrokes_map:
+    :return:
+    """
+    gpencil_data = freestyle_to_gpencil_frame(scene, lineset, fsstrokes_map)
+    obj = get_object(gpencil_data)
+    bpy.context.scene.collection.objects.link(obj)
 
 class StrokeCollector(StrokeShader):
     def __init__(self):
@@ -81,17 +115,17 @@ class Callbacks():
         print(len(fsstrokes_map[0]))
 
         print("\nAddress of a StrokeVertex:")
-        print(strokeVertex for strokeVertex in fsstrokes_map[0])
+        print(stroke_vertex for stroke_vertex in fsstrokes_map[0])
 
-        for strokeVertex in fsstrokes_map[0]:
+        for stroke_vertex in fsstrokes_map[0]:
             print("\nStrokeVertex:")
-            print(strokeVertex)
-            print(strokeVertex.point)
-            print(strokeVertex.attribute.thickness)
-            print(strokeVertex.attribute.visible)
+            print(stroke_vertex)
+            print(stroke_vertex.point)
+            print(stroke_vertex.attribute.thickness)
+            print(stroke_vertex.attribute.visible)
 
 
-#        freestyle_to_object(scene, lineset, fsstrokes_map)
+        freestyle_to_object(scene, lineset, fsstrokes_map)
 
 
 ############################################################
