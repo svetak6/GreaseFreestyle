@@ -1,7 +1,7 @@
 # rebuild from scratch
 bl_info = {
     "name": "Grease Freestyle R",
-    "author": "Folkert de Vries, Andrew Maslennikov",
+    "author": "Andrew Maslennikov",
     "version": (0, 0, 1),
     "blender": (2, 83, 0),
     "location": "Properties > Render > Grease Freestyle",
@@ -21,7 +21,7 @@ from bpy.props import (
     PointerProperty,
 )
 
-# TODO: fix * module referencies
+from mathutils import Vector, Matrix
 
 from freestyle.types import (
     Operators,
@@ -30,11 +30,9 @@ from freestyle.types import (
 )
 #from freestyle.functions import CurveMaterialF0D
 
-from mathutils import Vector, Matrix
+
 
 import parameter_editor
-
-
 
 class StrokeCollector(StrokeShader):
     def __init__(self):
