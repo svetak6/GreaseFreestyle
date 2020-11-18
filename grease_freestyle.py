@@ -172,7 +172,7 @@ def freestyle_to_gpencil_frame(scene, lineset, fsstrokes_map):
 
     # TODO: make options with props?
 
-    freestyle_to_gpencil_strokes(gpencil_data, fsstrokes_map, frame, lineset)
+    freestyle_to_gpencil_strokes(fsstrokes_map, frame, lineset)
 
     # for debugging purposes
     print("freestyle_to_gpencil_frame end")
